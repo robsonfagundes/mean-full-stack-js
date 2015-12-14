@@ -1,6 +1,6 @@
 {
   "name": "contatooh",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.13.3"
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "express-load": "^1.1.15"
   }
 }
