@@ -1,4 +1,26 @@
 <!--partials view contatos.html -->
-<h3>Your Contacts</h3>
-<button ng-click="add()">New</button>
+
+<div class="jumbotron">
+	<h3 class="text-center">Your Contacts</h3>
+</div>
+
+<button class="btn btn-primary" ng-click="add()">New</button>
 <p>Registered Contacts: {{total}}</p>
+
+<div class="table-responsive">
+	<table class="table table-hover">
+		<tr>
+			<th>Name:</th>
+			<th>Email:</th>
+			<th class="text-right">Action:</th>
+		</tr>
+		<tr ng-repeat="contact in contatos">
+			<td><a>{{contact.name}}</a></td>
+			<td>{{contact.email}}</td>
+			<td class="text-right">
+				<button class="btn btn-info">Edit</button>
+				<button class="btn btn-warning">Remove</button>
+			</td>
+		</tr>
+	</table>
+</div>
