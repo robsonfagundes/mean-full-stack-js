@@ -3,16 +3,16 @@
 
     angular
         .module('contatooh', [
-			'ngRoute'
+            'ngRoute'
         ])
         .config(['$routeProvider', function($routeProvider) {
             $routeProvider
-                .when('/contato/:contatoId', {
-                    templateUrl: 'partials/contatos.html', 
+                .when('/contatos', {
+                    templateUrl: 'contatos.html', 
                     controller: 'ContatosController'
                 })
-                .when('/contact', {
-                    templateUrl: 'partials/contato.html', 
+                .when('/contato/:contatoId', {
+                    templateUrl: 'contato.html', 
                     controller: 'ContatoController'
                 })
                 .otherwise({redirectTo: '/contatos'});

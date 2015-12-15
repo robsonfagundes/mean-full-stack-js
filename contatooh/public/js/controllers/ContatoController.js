@@ -3,7 +3,7 @@
 
     angular
         .module('contatooh')
-        	.controller('ContatoController', function($scope, $routeParams) {
-        		console.log($routeParams.contatoId);
-        	});
+    	.controller('ContatoController', function($scope, $routeParams) {
+    		console.log('The contact is: ' + $routeParams.contatoId);
+    	});
 })();
