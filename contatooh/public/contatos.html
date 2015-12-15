@@ -5,6 +5,7 @@
 </div>
 
 <button class="btn btn-primary" ng-click="add()">New</button>
+<input ng-model="name_filter" type="search" placeholder="Filter by Name">
 <p>Registered Contacts: {{total}}</p>
 
 <div class="table-responsive">
@@ -14,7 +15,7 @@
 			<th>Email:</th>
 			<th class="text-right">Action:</th>
 		</tr>
-		<tr ng-repeat="contact in contatos">
+		<tr ng-repeat="contact in contatos | filter: name_filter">
 			<td><a>{{contact.name}}</a></td>
 			<td>{{contact.email}}</td>
 			<td class="text-right">
