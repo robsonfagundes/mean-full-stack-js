@@ -3,7 +3,7 @@
 
     angular
         .module('contatooh', [
-            'ngRoute'
+            'ngRoute', 'ngResource'
         ])
         .config(['$routeProvider', function($routeProvider) {
             $routeProvider
