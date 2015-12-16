@@ -4,24 +4,32 @@
 	<h3 class="text-center">Your Contacts</h3>
 </div>
 
-<button class="btn btn-primary" ng-click="add()">New</button>
-<input ng-model="name_filter" type="search" placeholder="Filter by Name">
-<p>Registered Contacts: {{total}}</p>
+<button class="btn btn-primary" ng-click="add()">
+	<span class="glyphicon glyphicon-plus"></span> New
+</button>
 
+<hr/>
+<input ng-model="name_filter" type="search" placeholder="Filter by Name">
+<hr/>	
 <div class="table-responsive">
 	<table class="table table-hover">
 		<tr>
 			<th>Name:</th>
 			<th>Email:</th>
-			<th class="text-right">Action:</th>
+			<th class="text-center">Action:</th>
 		</tr>
 		<tr ng-repeat="contact in contatos | filter: name_filter">
 			<td><a>{{contact.name}}</a></td>
 			<td>{{contact.email}}</td>
-			<td class="text-right">
-				<button class="btn btn-info">Edit</button>
-				<button class="btn btn-warning">Remove</button>
+			<td class="text-center">
+				<button class="btn">
+					<span class="glyphicon glyphicon-edit"></span>
+				</button>
+				<button class="btn">
+					<span class="glyphicon glyphicon-trash"></span>
+				</button>
 			</td>
 		</tr>
 	</table>
+	<p>Registered Contacts: {{contacts.length}}</p>
 </div>
