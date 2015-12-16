@@ -1,6 +1,7 @@
 <!--partials view contatos.html -->
 
 <div class="jumbotron">
+	<p ng-show="msg.text">{{msg.text}}</p>
 	<h3 class="text-center">Your Contacts</h3>
 </div>
 
@@ -22,7 +23,7 @@
 			<td><a>{{contact.name}}</a></td>
 			<td>{{contact.email}}</td>
 			<td class="text-center">
-				<button class="btn">
+				<button ng-click="remove(contact)" class="btn">
 					<span class="glyphicon glyphicon-edit"></span>
 				</button>
 				<button class="btn">
@@ -31,5 +32,6 @@
 			</td>
 		</tr>
 	</table>
-	<p>Registered Contacts: {{contacts.length}}</p>
+	<p ng-show="contacts.length">Registered Contacts: {{contacts.length}}</p>
+	<p class="text-info" ng-hide="contacts.length">Sorry but... Don't have registered contacts!</p>
 </div>
