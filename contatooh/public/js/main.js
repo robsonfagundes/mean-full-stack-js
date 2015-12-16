@@ -7,6 +7,10 @@
         ])
         .config(['$routeProvider', function($routeProvider) {
             $routeProvider
+                .when('/contato', {
+                    templateUrl: 'contato.html', 
+                    controller: 'ContatoController'
+                })
                 .when('/contatos', {
                     templateUrl: 'contatos.html', 
                     controller: 'ContatosController'

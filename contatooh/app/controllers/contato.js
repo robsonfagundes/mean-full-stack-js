@@ -1,9 +1,9 @@
 var contatos = [
-		{_id: 1, nome: 'robson fagundes', email: 'robsonfagundes@gmail.com'},
-		{_id: 1, nome: 'ana paula soares fagundes', email: 'anapaulasoares@gmail.com'},
-		{_id: 1, nome: 'alice soares fagundes', email: 'alice@gmail.com'},
-		{_id: 1, nome: 'helena soares fagundes', email: 'helena@gmail.com'},
-		{_id: 1, nome: 'robson junior soares fagundes', email: 'robsonfagundesjr@gmail.com'}
+		{_id: 1, name: 'robson fagundes', email: 'robsonfagundes@gmail.com'},
+		{_id: 1, name: 'ana paula soares fagundes', email: 'anapaulasoares@gmail.com'},
+		{_id: 1, name: 'alice soares fagundes', email: 'alice@gmail.com'},
+		{_id: 1, name: 'helena soares fagundes', email: 'helena@gmail.com'},
+		{_id: 1, name: 'robson junior soares fagundes', email: 'robsonfagundesjr@gmail.com'}
 	];
 
 //express-load
