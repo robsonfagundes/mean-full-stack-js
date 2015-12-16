@@ -17,7 +17,7 @@ module.exports = function(){
 	app.set('views', './app/views');
 
 	// middleware for http protocol (put and delete) --> parse application/x-www-form-urlencoded 
-	app.use(bodyParser.urlencoded({ extended: false }))
+	app.use(bodyParser.urlencoded({ extended: true }))
 	// parse application/json 
 	app.use(bodyParser.json())
 

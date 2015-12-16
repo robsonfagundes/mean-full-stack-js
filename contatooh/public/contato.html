@@ -1,2 +1,29 @@
 <!--partials view contato.html -->
-<h1>Contact</h1>
+<h1 class="text-center"> Contact</h1>
+<p ng-show="msg.text">{{msg.text}}</p>
+<form>
+	<div class="form-group">
+		<label for="name"> Full Name:</label>
+		<input type="text" class="form-control" id="name" placeholder="First Last Name"
+	     ng-model="contact.name">
+	</div>
+
+	<div class="form-group">
+		<label for="email"> Email:</label>
+		<div class="input-group">
+			<span class="input-group-addon">@</span>
+			<input type="email" class="form-control" id="email" placeholder="email@explample.com" name="email"
+		 	ng-model="contact.email" required>			
+		</div>
+	</div>
+
+	<button type="submit" class="btn btn-primary">
+		<span class="glyphicon glyphicon-save"></span> Save
+	</button>
+	<a href="#/" class="btn btn-default"> 
+		<span class="glyphicon glyphicons-back"></span> Back
+	</a>
+</form>
+
+
+
