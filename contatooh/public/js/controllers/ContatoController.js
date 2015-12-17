@@ -5,12 +5,9 @@
         .module('contatooh')
     	.controller('ContatoController',
 
-    		function($scope, $routeParams, Contact) {
+    		function($scope, Contact, $routeParams) {
 				
-    			// obj
-    			$scope.msg = {text: ''};
-	
-    			// get obj contact
+       			// get obj contact
 				if($routeParams.contatoId){
 					Contact.get({id: $routeParams.contatoId},
 					function(contact) {
@@ -23,21 +20,20 @@
 					}
 				);
 				} else {
-					$scope.contact = {}
+					$scope.contact = new Contact();
 				}
 
 				// save contact
 				$scope.saveContact = function() {
-					$scope.contact.$save()
+					$scope.contact.save()
 						.then(function () {
 							$scope.msg = {text: 'Contact Saved!'};
-							$scope.contact = new Contato(); //clear form
+							$scope.contact = new Contact(); //clear form
 						})
 						.catch(function (error) {
 							$scope.msg = {text: 'Do not is possible add contact on list!'};
 							console.log(error);
 						});
 				};
-
     	});
 })();

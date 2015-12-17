@@ -25,13 +25,14 @@
 						}
 					);
 				}
-
+				// list contcts when contoller loader
+				getContacts();
 
 				// remove contact
 				$scope.remove = function(contact) {
 					console.log(contact.name);
 					Contact.delete({id: contact._id},
-						getContacts(),
+						getContacts,
 						function(error) {
 							$scope.msg = {text: 'Do not is possible remove contact of list!'};
 							console.log(error);
@@ -40,12 +41,7 @@
 				};
 
 
-				// init controller
-				$scope.init = function() {
-					getContacts();
-				};
-				$scope.init();
-    	});
+		});
 
 
 
