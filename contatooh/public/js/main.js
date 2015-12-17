@@ -22,5 +22,4 @@
                 .otherwise({redirectTo: '/contatos'});
         }]);
 
-
  })();

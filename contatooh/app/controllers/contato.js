@@ -1,69 +1,87 @@
 "use strict";
 
-var ID_CONTACT_INC = 5;
-
-var contatos = [
-		{_id: 1, name: 'robson fagundes', email: 'robsonfagundes@gmail.com'},
-		{_id: 2, name: 'ana paula soares fagundes', email: 'anapaulasoares@gmail.com'},
-		{_id: 3, name: 'alice soares fagundes', email: 'alice@gmail.com'},
-		{_id: 4, name: 'helena soares fagundes', email: 'helena@gmail.com'},
-		{_id: 5, name: 'robson junior soares fagundes', email: 'robsonfagundesjr@gmail.com'}
-	];
-
 //express-load
-module.exports = function() {
+module.exports = function(app) {
 	
+	var Contato =  app.models.contato;
 	var controller = {};
 	
 	// list all
 	controller.listaContatos = function(req, res) {
-		res.json(contatos);
+		Contato.find().exec()
+			.then(
+				function(contatos) {
+					res.json(contatos);
+					console.log('mean-full-stack-js: API list all: Contacts')
+				}, 
+				function(erro) {
+					res.status(500).json(erro);
+					console.error(erro);
+				}
+			);
 	};	
 
 	// get contact por campo
 	controller.obtemContato = function(req, res) {
-		var idContato = req.params.id;
-		var contato = contatos.filter(function(contato) {
-			return contato._id == idContato;
-		}) [0];
-		contato ? res.json(contato) : res.status(404).send('Contato não encontrado!');
+		var _id= req.params.id;
+		Contato.findById(_id).exec()
+		.then(
+				function(contato) {
+					if(!contato) throw new Error('mean-full-stack-js: API Contact not found!');
+					res.json(contato);
+				}, 
+				function(erro) {
+					res.status(404).json(erro);
+					console.error(erro);
+				}
+			);
 	};
 
 	// add novo contato
 	controller.salvaContato = function(req, res) {
-		var contato = req.body;
-		contato = contato._id ? atualiza(contato) :	adiciona(contato);
-		res.json(contato);
+		var _id = req.body._id;
+		if(_id) {
+			Contact.findByIdAndUpdate(_id, req.body).exec()
+			.then(
+				function(contato) {
+					res.json(contato);
+				}, 
+				function(erro) {
+					res.status(500).json(erro);
+					console.error(erro);
+				}
+			);
+		} else {
+			Contact.create(req.body)
+			.then(
+				function(contato) {
+					res.status(201).json(contato);
+				}, 
+				function(erro) {
+					res.status(500).json(erro);
+					console.error(erro);
+				}
+			);
+		}
 	};
 	
 	// remove por id
 	controller.removeContato = function(req, res) {
-		var idContato = req.params.id;
-		contatos = contatos.filter(function(contato) {
-			return contato._id != idContato;
-		});
-		res.status(204).end;
+		var _id = req.params.id;
+		Contato.remove({'_id' : _id}).exec()
+		.then(
+				function() {
+					res.status(204).end();
+					console.log('mean-full-stack-js: API remove contato: ' + _id)
+				}, 
+				function(erro) {
+					return console.error(erro);
+				}
+			);
+		
 	};
 
-	// contatoNovo
-	function adiciona(contatoNovo) {
-		contatoNovo._id = ++ID_CONTACT_INC;
-		contatos.push(contatoNovo);
-		return contatoNovo
-	}
-
-	// contatoAleterar
-	function atualiza(contatoAleterar) {
-		contatos = contatos.map(function(contato) {
-			if(contatoNovo._id == contatoAleterar._id) {
-				contato = contatoAleterar;
-			}
-			return contato;
-		});
-		return contatoAleterar;
-	}
-
+	
+	// return controller
 	return controller;
 };
-
-
