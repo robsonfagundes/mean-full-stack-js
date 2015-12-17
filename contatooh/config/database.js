@@ -4,7 +4,11 @@ var mongoose = require("mongoose");
  
 module.exports = function(uri) {
 
-	mongoose.connect(uri);
+	// debbuger
+	mongoose.set('debug', true);
+
+	// pool 10 connction
+	mongoose.connect(uri, {server: {poolSize: 10}});
 
 	// manager connection
 	mongoose.connection.on('connected', function() {
@@ -24,6 +28,4 @@ module.exports = function(uri) {
 			process.exit(0);
 		});
 	});
-
-
-}
+};
