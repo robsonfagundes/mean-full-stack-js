@@ -41,7 +41,7 @@ module.exports = function(app) {
 	controller.salvaContato = function(req, res) {
 		var _id = req.body._id;
 		if(_id) {
-			Contact.findByIdAndUpdate(_id, req.body).exec()
+			Contato.findByIdAndUpdate(_id, req.body).exec()
 			.then(
 				function(contato) {
 					res.json(contato);
@@ -52,7 +52,7 @@ module.exports = function(app) {
 				}
 			);
 		} else {
-			Contact.create(req.body)
+			Contato.create(req.body)
 			.then(
 				function(contato) {
 					res.status(201).json(contato);
