@@ -1,3 +1,4 @@
+// ContatosController
 (function() {
     'use strict';
 
@@ -21,7 +22,7 @@
 						},
 						function(error){
 							$scope.msg = {text: 'Do not is possible get an list of contacts!'};
-							console.log(error);
+							console.log('App Contatooh: ' + error);
 						}
 					);
 				}
@@ -35,7 +36,7 @@
 						getContacts,
 						function(error) {
 							$scope.msg = {text: 'Do not is possible remove contact of list!'};
-							console.log(error);
+							console.log('App Contatooh: ' + error);
 						}
 					);
 				};
