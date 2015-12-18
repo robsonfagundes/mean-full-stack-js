@@ -37,5 +37,10 @@
 							console.log('App Contatooh: ' + error);
 						});
 				};
+
+				// list emergency
+				Contact.query(function(contacts) {
+					$scope.contacts = contacts; 
+				});
     	});
 })();

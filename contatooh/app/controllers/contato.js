@@ -8,7 +8,7 @@ module.exports = function(app) {
 	
 	// list all
 	controller.listaContatos = function(req, res) {
-		Contato.find().exec()
+		Contato.find().populate('emergency').exec()
 			.then(
 				function(contatos) {
 					res.json(contatos);
@@ -40,6 +40,9 @@ module.exports = function(app) {
 	// add novo contato
 	controller.salvaContato = function(req, res) {
 		var _id = req.body._id;
+
+		req.body.emergency = req.body.emergency || null;
+
 		if(_id) {
 			Contato.findByIdAndUpdate(_id, req.body).exec()
 			.then(

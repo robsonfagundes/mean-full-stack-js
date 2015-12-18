@@ -14,7 +14,11 @@ module.exports = function() {
 			index: {
 				unique: true
 			}
+		},
+		emergency: {
+			type:  mongoose.Schema.ObjectId,
+			require: 'Contact'
 		}
 	});
-	return mongoose.model('Contato', schema);
+	return mongoose.model('Contact', schema);
 };
