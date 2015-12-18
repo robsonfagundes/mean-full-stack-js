@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 module.exports = function() {
 	var schema = mongoose.Schema({
-		name: {
+		nome: {
 			type: String,
 			require: true
 		},
@@ -15,10 +15,10 @@ module.exports = function() {
 				unique: true
 			}
 		},
-		emergency: {
+		emergencia: {
 			type:  mongoose.Schema.ObjectId,
-			require: 'Contact'
+			require: 'Contato'
 		}
 	});
-	return mongoose.model('Contact', schema);
+	return mongoose.model('Contato', schema);
 };
