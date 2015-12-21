@@ -1,0 +1,41 @@
+<!--partials view contact.html -->
+
+<div class="jumbotron">
+	<h3 class="text-center">Your Contact List</h3>
+</div>
+
+<a ng-href="#/contact" class="btn btn-primary">
+	<span class="glyphicon glyphicon-plus"></span> New
+</a>
+
+<hr/>
+<input ng-model="name_filter" type="search" placeholder="Filter by Name">
+<hr/>	
+<div class="table-responsive">
+<p ng-show="msg.text">{{msg.text}}</p>
+	<table class="table table-hover">
+		<tr>
+			<th>Name:</th>
+			<th>Email:</th>
+			<th>Emergency:</th>
+			<th class="text-center">Action:</th>
+		</tr>
+		<tr ng-repeat="contact in contacts | filter: name_filter">
+			<td><a ng-href="#/contact/{{contact._id}}">{{contact.name}}</a></td>
+			<td>{{contact.email}}</td>
+			<td>{{contact.emergency.name}}</td>
+			<td class="text-center">
+				<button ng-click="remove(contact)" class="btn">
+					<span class="glyphicon glyphicon-trash"></span>
+				</button>
+			</td>
+		</tr>
+	</table>
+	<p ng-show="contacts.length" class=" alert-info">
+		<strong>&nbsp;Info!</strong> Registered Contacts: {{contacts.length}}
+	</p>
+	<div ng-hide="contacts.length" class="alert alert-warning">
+		<strong>Sorry... </strong> but your don't have registered contacts.
+	</div>
+	<p class="text-info" ></p>
+</div>
