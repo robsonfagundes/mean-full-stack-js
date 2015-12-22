@@ -18,7 +18,7 @@
 					Contact.query(
 						function(contacts) {
 							$scope.contacts = contacts;
-							$scope.msg = {};		
+							$scope.msg = {};
 						},
 						function(error){
 							$scope.msg = {text: 'Do not is possible get an list of contacts!'};

@@ -2,7 +2,8 @@
 
 //express-load
 module.exports = function(app) {
-	
+
+	var sanitize = require('mongo-sanitize');
 	var Contact =  app.models.contact;
 	var controller = {};
 	
@@ -26,25 +27,29 @@ module.exports = function(app) {
 		var _id = req.params.id;
 		Contact.findById(_id).exec()
 		.then(
-				function(contact) {
-					if(!contact) throw new Error('mean-full-stack-js: API Contact not found!');
-					res.json(contact);
-				}, 
-				function(erro) {
-					res.status(404).json(erro);
-					console.error(erro);
-				}
-			);
+			function(contact) {
+				if(!contact) throw new Error('mean-full-stack-js: API Contact not found!');
+				res.json(contact);
+			}, 
+			function(erro) {
+				res.status(404).json(erro);
+				console.error(erro);
+			}
+		);
 	};
 
 	// add new contact
 	controller.saveContact = function(req, res) {
 
 	var _id = req.body._id;
-	req.body.emergency = req.body.emergency || null;
+	var datas = {
+		'name' : req.body.name,
+		'email' : req.body.email,
+		'emergency' : req.body.emergency || null
+	};
 
 	if(_id) {
-		Contact.findByIdAndUpdate(_id, req.body).exec()
+		Contact.findByIdAndUpdate(_id, datas).exec()
 		.then(
 			function(contact) {
 				res.json(contact);
@@ -55,7 +60,7 @@ module.exports = function(app) {
 			}
 		);
 	} else {	
-		Contact.create(req.body)
+		Contact.create(datas)
 			.then(
 				function(contact) {
 			 		res.status(201).json(contact);
@@ -69,19 +74,21 @@ module.exports = function(app) {
 	};
 	
 	// remove by id
-		controller.removeContact = function(req, res) {
-		var _id = req.params.id;
+	controller.removeContact = function(req, res) {
+
+		// remove query selectors the ID
+		var _id = sanitize(req.params.id);
+		
 		Contact.remove({'_id' : _id}).exec()
 		.then(
-				function() {
-					res.status(204).end();
-					console.log('mean-full-stack-js: API remove contact: ' + _id)
-				}, 
-				function(erro) {
-					return console.error(erro);
-				}
-			);
-		
+			function() {
+				res.status(204).end();
+				console.log('mean-full-stack-js: API remove contact: ' + _id)
+			}, 
+			function(erro) {
+				return console.error(erro);
+			}
+		);
 	};
 
 	

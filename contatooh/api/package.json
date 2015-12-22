@@ -13,7 +13,9 @@
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "express-load": "^1.1.15",
+    "helmet": "^1.0.1",
     "method-override": "^2.3.5",
+    "mongo-sanitize": "^1.0.0",
     "mongodb": "^2.0.52",
     "mongoose": "^4.3.1",
     "mongoose-findorcreate": "^0.1.2"
