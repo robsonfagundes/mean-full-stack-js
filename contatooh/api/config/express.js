@@ -1,7 +1,9 @@
+"use strict";
 
 var express = require('express');
 var load = require('express-load');
 var bodyParser = require('body-parser');
+var helmet = require('helmet');
 
 module.exports = function(){
 
@@ -11,8 +13,8 @@ module.exports = function(){
 	app.set('port', 3000);
 
 	// middleware	
-	app.set('view engine', 'ejs');
-	app.set('views','./app/views');
+	// app.set('view engine', 'ejs');
+	// app.set('views','./app/views');
 	app.use(express.static('./public'));
 
 	// novos middlewares  --> middleware for http protocol (put and delete) --> parse application/x-www-form-urlencoded 
@@ -48,6 +50,23 @@ module.exports = function(){
 	        next();
 	    }
 	});
+
+	/**
+	 * Making even safer app, All stack
+	 */
+	 // enable helmet
+	 app.use(helmet());
+	 // fake x-powered-by
+	 app.use(helmet.hidePoweredBy({setTo: 'PHP 5.5.14'}));
+	 // block iframe
+	 app.use(helmet.xframe());
+	 // filter XSS
+	 app.use(helmet.xssFilter());
+	 // Mime type don't browser
+	 app.use(helmet.nosniff());
+
+
+
 
 	/**
 	* load routes (express-load)

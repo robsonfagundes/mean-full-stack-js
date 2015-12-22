@@ -1,13 +1,11 @@
 <!--partials view contact.html -->
-
+<span class="text-center">&nbsp;</span>
 <div class="jumbotron">
-	<h3 class="text-center">Your Contact List</h3>
+	<h1 class="text-center">Your Contact List</h1>	
 </div>
-
 <a ng-href="#/contact" class="btn btn-primary">
 	<span class="glyphicon glyphicon-plus"></span> New
 </a>
-
 <hr/>
 <input ng-model="name_filter" type="search" placeholder="Filter by Name">
 <hr/>	
@@ -31,9 +29,7 @@
 			</td>
 		</tr>
 	</table>
-	<p ng-show="contacts.length" class=" alert-info">
-		<strong>&nbsp;Info!</strong> Registered Contacts: {{contacts.length}}
-	</p>
+	Registered Contacts: {{contacts.length}}
 	<div ng-hide="contacts.length" class="alert alert-warning">
 		<strong>Sorry... </strong> but your don't have registered contacts.
 	</div>
