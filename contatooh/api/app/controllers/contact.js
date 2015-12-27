@@ -40,43 +40,44 @@ module.exports = function(app) {
 
 	// add new contact
 	controller.saveContact = function(req, res) {
+		var _id = req.body._id;
 
-	var _id = req.body._id;
-	var datas = {
-		'name' : req.body.name,
-		'email' : req.body.email,
-		'emergency' : req.body.emergency || null
-	};
+		// just only name, email and emergency
+		var datas = {
+			'name' : req.body.name,
+			'email' : req.body.email,
+			'emergency' : req.body.emergency || null
+		};
 
-	if(_id) {
-		Contact.findByIdAndUpdate(_id, datas).exec()
-		.then(
-			function(contact) {
-				res.json(contact);
-			}, 
-			function(erro) {
-				console.error(erro)
-				res.status(500).json(erro);
-			}
-		);
-	} else {	
-		Contact.create(datas)
+		if(_id) {
+			Contact.findByIdAndUpdate(_id, datas).exec()
 			.then(
 				function(contact) {
-			 		res.status(201).json(contact);
+					res.json(contact);
 				}, 
 				function(erro) {
-			  		console.log(erro);
-			  		res.status(500).json(erro);
+					console.error(erro)
+					res.status(500).json(erro);
 				}
 			);
-		}
+		} else {	
+			Contact.create(datas)
+				.then(
+					function(contact) {
+				 		res.status(201).json(contact);
+					}, 
+					function(erro) {
+				  		console.log(erro);
+				  		res.status(500).json(erro);
+					}
+				);
+			}
 	};
 	
 	// remove by id
 	controller.removeContact = function(req, res) {
 
-		// remove query selectors the ID
+		// remove 'query selectors' of ID
 		var _id = sanitize(req.params.id);
 		
 		Contact.remove({'_id' : _id}).exec()
