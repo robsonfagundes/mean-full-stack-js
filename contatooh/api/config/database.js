@@ -7,7 +7,7 @@ module.exports = function(uri) {
 	// debbuger
 	mongoose.set('debug', true);
 
-	// pool 10 connction
+	// pool X connction
 	mongoose.connect(uri, {server: {poolSize: 5}});
 
 	// manager connection

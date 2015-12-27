@@ -56,17 +56,14 @@ module.exports = function(){
 	 */
 	 // enable helmet
 	 app.use(helmet());
-	 // fake x-powered-by
-	 app.use(helmet.hidePoweredBy({setTo: 'PHP 5.5.14'}));
+	 // fake x-powered-by php 
+	 app.use(helmet.hidePoweredBy({setTo: 'PHP 7.0.1'}));
 	 // block iframe
 	 app.use(helmet.xframe());
 	 // filter XSS
 	 app.use(helmet.xssFilter());
-	 // Mime type don't browser
+	 // Mime type don't on browser
 	 app.use(helmet.nosniff());
-
-
-
 
 	/**
 	* load routes (express-load)
@@ -77,9 +74,15 @@ module.exports = function(){
 		.into(app);
 
 	/**
+	 * when no route meet
+	 */	
+	app.get('*', function(req, res) {
+		res.status(404);
+	});		
+
+	/**
 	 * return app
 	 */
-
 	return app;
 
 }
