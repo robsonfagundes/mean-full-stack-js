@@ -1,6 +1,5 @@
-'use strict'
 
-describe('ContactController-AppWeb', function() {
+describe('mean-full-stack-js - ContactController-AppWeb', function() {
 
 	var $scope;
 
@@ -11,7 +10,7 @@ describe('ContactController-AppWeb', function() {
 		});
 	});
 
-	it("Make a Contact empty when no parameter of route was send", 
+	it("TEST: Make a Contact empty when no parameter of route was send", 
 		inject(function($controller) {
 			$controller('ContactController', {'$scope' : $scope});
 			expect($scope.contact._id).toBeUndefined();
