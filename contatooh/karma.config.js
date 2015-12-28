@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: '../',
 
 
     // frameworks to use
@@ -15,6 +15,14 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+        'contatooh/app-web/vendor/angular/angular.js',
+        'contatooh/app-web/vendor/angular-mocks/angular-mocks.js',
+        'contatooh/app-web/vendor/angular-resource/angular-resource.js',
+        'contatooh/app-web/vendor/angular-route/angular-route.js',
+        'contatooh/app-web/js/main.js',
+        'contatooh/app-web/js/controllers/**/*.js',
+        'contatooh/app-web/js/service/**/*.js',
+        'contatooh/test/spec/**/*Spec.js'
     ],
 
 
@@ -54,7 +62,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Firefox', 'Chrome', 'Safari', 'Opera', 'IE', 'ChromeCanary', 'PhantomJS'],
+    browsers: ['Firefox', 'PhantomJS'],
 
 
     // Continuous Integration mode
